@@ -27,4 +27,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/posts', postsRouter);
 
+// 路徑錯誤
+app.use('*', function (req, res, next) {
+  res.status(404).json({
+    status: "false",
+    message: "無此網路路由"
+  })
+})
+
 module.exports = app;

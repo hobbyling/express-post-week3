@@ -71,6 +71,8 @@ router.patch('/:id', async function (req, res, next) {
       await Post.findByIdAndUpdate(req.params.id, req.body)
       const post = await Post.findById(req.params.id)
       resHandle.successHandle(res, post)
+    } else {
+      resHandle.errorHandle(res, 400, ['查無此 ID'])
     }
   } catch (error) {
     resHandle.errorHandle(res, 400, error)
